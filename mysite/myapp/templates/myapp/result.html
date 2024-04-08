@@ -8,23 +8,48 @@
     <title>Document</title>
 </head>
 <body>
-    <table class="table">
-        <thead class="table-dark">
-          <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Name</th>
-            <th scope="col">Link</th>
-          </tr>
-        </thead>
-        <tbody>
-            {% for link in data %}
-                <tr>
-                    <td>{{ link.id }}</td>
-                    <td>{{ link.name }}</td>
-                    <td>{{ link.address }}</td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 m-5">
+                <h1>Link collector</h1>
+            </div>
+        </div>
+        <div class="row m-5">
+            <div class="col-md-4">
+                <form action="/" method="POST">
+                    {% csrf_token %}
+                    <input type="text" class="form-control" id="site" placeholder="enter site address" name="site">
+                </div>
+                    <div class="col-md-2">
+                        <button class="btn btn-primary" type="submit">Scrape</button>
+                    </div>
+                </form>
+                <div class="col-md-6">
+                    <a href="/delete" class="btn btn-warning">Delete</a>
+                </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8">
+                <table class="table">
+                    <thead class="table-dark">
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Link</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        {% for link in data %}
+                            <tr>
+                                <td>{{ link.id }}</td>
+                                <td>{{ link.name }}</td>
+                                <td>{{ link.address }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>    
 </body>
 </html>
